@@ -1,6 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的角色创建器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .creator-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .attr-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .attr-item {
+            flex: 1;
+            min-width: 80px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 5px;
+            display: none;
+        }
+        #result h3 {
+            color: #2196f3;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script>
-$('body').load('https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/dist/custom_start/index.html')
-</script>
-</body>
+    <div class="creator-box">
+        <h1>命运之旅 - 角色创建</h1>
+        
+        <div class="form-group">
+            <label>角色名称</label>
+            <input type="text" id="name" placeholder="请输入角色名">
+        </div>
+
+        <div class="form-group">
+            <label>性别</label>
+            <select id="gender">
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="自定义">自定义</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>种族</label>
+            <select id="race">
+                <option value="人类">人类</option>
+                <option value="精灵">精灵</option>
+                <option value="兽人">兽人</option>
+                <option value="自定义">自定义</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>初始属性</label>
+            <div class="attr-group">
+                <div class="attr-item">
+                    <label>力量</label>
+                    <input type="number" id="str" value="0" min="0" max="10">
+                </div>
+                <div class="attr-item">
+                    <label>敏捷</label>
+                    <input type="number" id="agi" value="0" min="0" max="10">
+                </div>
+                <div class="attr-item">
+                    <label>体质</label>
+                    <input type="number" id="vit" value="0" min="0" max="10">
+                </div>
+                <div class="attr-item">
+                    <label>智力</label>
+                    <input type="number" id="int" value="0" min="0" max="10">
+                </div>
+                <div class="attr-item">
+                    <label>精神</label>
+                    <input type="number" id="spr" value="0" min="0" max="10">
+                </div>
+            </div>
+        </div>
+
+        <button onclick="createCharacter()">创建角色</button>
+
+        <div id="result">
+            <h3>角色创建成功！</h3>
+            <p id="character-info"></p>
+        </div>
+    </div>
+
+    <script>
+        function createCharacter() {
+            // 获取表单数据
+            const name = document.getElementById('name').value || '无名者';
+            const gender = document.getElementById('gender').value;
+            const race = document.getElementById('race').value;
+            const str = document.getElementById('str').value;
+            const agi = document.getElementById('agi').value;
+            const vit = document.getElementById('vit').value;
+            const int = document.getElementById('int').value;
+            const spr = document.getElementById('spr').value;
+
+            // 生成角色信息
+            const info = `
+                名称：${name}<br>
+                性别：${gender}<br>
+                种族：${race}<br>
+                力量：${str} | 敏捷：${agi} | 体质：${vit} | 智力：${int} | 精神：${spr}
+            `;
+
+            // 显示结果
+            document.getElementById('character-info').innerHTML = info;
+            document.getElement
