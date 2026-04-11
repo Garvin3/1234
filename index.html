@@ -4,39 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>命运之旅-自定义启动页</title>
-    <!-- 引入jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <style>
-        /* 加载提示样式，提升体验 */
+        body { margin: 0; padding: 0; }
+        iframe { width: 100vw; height: 100vh; border: none; }
         .loading {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 18px;
-            color: #333;
-            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 16px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <!-- 加载提示 -->
     <div class="loading">正在加载命运之旅前端页面...</div>
-
-    <script>
-        // 页面加载完成后执行
-        $(document).ready(function() {
-            // 加载远端页面
-            $('body').load('https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/dist/custom_start/index.html', function(response, status, xhr) {
-                // 加载失败时的提示
-                if (status === "error") {
-                    $('.loading').html('页面加载失败，请刷新重试！<br>错误信息：' + xhr.status + ' ' + xhr.statusText);
-                } else {
-                    // 加载成功，隐藏提示
-                    $('.loading').hide();
-                }
-            });
-        });
-    </script>
+    <iframe src="https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/dist/custom_start/index.html" onload="document.querySelector('.loading').style.display='none'"></iframe>
 </body>
 </html>
