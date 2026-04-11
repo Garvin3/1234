@@ -1,1 +1,199 @@
-<head><script type="module">import{createPinia as e,defineStore as t,storeToRefs as a}from'https://testingcf.jsdelivr.net/npm/pinia/+esm';import{default as l}from'https://testingcf.jsdelivr.net/npm/json5/+esm';import{klona as o}from'https://testingcf.jsdelivr.net/npm/klona/+esm';var n={391(e,t){t.A=(e,t)=>{const a=e.__vccOpts||e;for(const[e,l]of t)a[e]=l;return a}}},r={};const c=Vue,s={class:'creator-app'};var i=function e(t){var a=r[t];if(void 0!==a)return a.exports;var l=r[t]={exports:{}};return n[t](l,l.exports,e),l.exports}(391);const d={},m=(0,i.A)(d,[['render',function(e,t){const a=(0,c.resolveComponent)('RouterView');return(0,c.openBlock)(),(0,c.createElementBlock)('div',s,[(0,c.createVNode)(a)])}],['__scopeId','data-v-15ec88ba']]),u=VueRouter,p=[{value:'common',label:'普通',color:'#9e9e9e'},{value:'uncommon',label:'优秀',color:'#4caf50'},{value:'rare',label:'稀有',color:'#2196f3'},{value:'epic',label:'史诗',color:'#9c27b0'},{value:'legendary',label:'传说',color:'#ff9800'},{value:'mythic',label:'神话',color:'#e91e63'},{value:'only',label:'唯一',color:'#ff0000'}],v=[{label:'武器',value:'武器'},{label:'防具',value:'防具'},{label:'饰品',value:'饰品'}],f=[{label:'主动',value:'主动'},{label:'被动',value:'被动'}],V=[{value:'equipment',label:'装备'},{value:'item',label:'道具'},{value:'skill',label:'技能'}],k=e=>p.find(t=>t.value===e)?.label||'普通',N=e=>p.find(t=>t.value===e)?.color||'#9e9e9e';async function y(e,t){try{const a=await fetch(`https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/public/assets/data/${e}`);if(!a.ok)return console.log(`未找到自定义数据文件 (${e})`),{};const o=await a.text(),n=l.parse(o);return console.log(`成功加载自定义${t}数据`),n}catch(e){return console.log(`未找到自定义${t}数据或格式错误:`,e),{}}}function E(e,t){return _.mergeWith({},e,t,(e,t)=>{if(_.isArray(e))return[...e,...t]})}const g=(0,c.ref)({});(async function(){return y('baseInfo.json','基础信息')})().then(e=>{g.value=e});const b=(0,c.computed)(()=>[...(g.value.genders||[]).filter(e=>'自定义'!==e),'自定义']),h=(0,c.computed)(()=>({...g.value.raceCosts||{},自定义:80})),B=(0,c.computed)(()=>({...g.value.identityCosts||{},自定义:80})),C=((0,c.computed)(()=>[...(g.value.startLocations||[]).filter(e=>'自定义'!==e),'自定义']),(0,c.computed)(()=>{const e=((e,t='-')=>{const a=[],l=new Map,o=new Set(e),n=new Set;for(const a of e){const e=a.split(t);let l='';for(let a=0;a<e.length-1;a++){const r=e[a].trim();l=l?`${l}${t}${r}`:r,o.has(l)&&n.add(l)}}for(const o of e){const e=o.split(t);let r='',c=a;for(let a=0;a<e.length;a++){const o=e[a].trim();r=r?`${r}${t}${o}`:o;let s=l.get(r);if(!s&&(s={label:o,value:r,children:[]},l.set(r,s),c.push(s),n.has(r))){const e={label:`${o}（本地区）`,value:r};s.children.unshift(e)}c=s.children}}const r=e=>{for(const t of e)t.children&&0===t.children.length?delete t.children:t.children&&r(t.children)};return r(a),a})((g.value.startLocations||[]).filter(e=>'自定义'!==e));return e.push({label:'自定义',value:'自定义'}),e})),x=['力量','敏捷','体质','智力','精神'],w=e=>e>=1&&e<=4?0:e>=5&&e<=8?1:e>=9&&e<=12?2:e>=13&&e<=16?3:e>=17&&e<=20?4:e>=21&&e<=24?5:e>=25?6:0,S=e=>e>=1&&e<=4?'第一层级':e>=5&&e<=8?'第二层级':e>=9&&e<=12?'第三层级':e>=13&&e<=16?'第四层级':e>=17&&e<=20?'第五层级':e>=21&&e<=24?'第六层级':e>=25?'第七层级':'未知层级',D={};let P=null;function F(){return P||D}!async function(){const e=await async function(){return y('skills.json','技能')}();P=E(D,e)}();const I=()=>_.find(_.keys(B.value),e=>_.includes(e,'平民'))||'',L=t('character',()=>{const e=(0,c.ref)({name:'',gender:'男',customGender:'',age:18,race:'人类',customRace:'',identity:I(),customIdentity:'',startLocation:'大陆东南部区域-索伦蒂斯王国',customStartLocation:'',level:1,basePoints:{力量:0,敏捷:0,体质:0,智力:0,精神:0},attributePoints:{力量:0,敏捷:0,体质:0,智力:0,精神:0},reincarnationPoints:1e3,destinyPoints:0,money:0}),t=(0,c.ref)([]),a=(0,c.ref)([]),l=(0,c.ref)([]),o=(0,c.ref)([]),n=(0,c.ref)(null),r=(0,c.computed)(()=>_.sum([_.get(h.value,e.value.race,0),_.get(B.value,e.value.identity,0),m.value,_.sumBy(t.value,'cost'),_.sumBy(a.value,'cost'),_.sumBy(l.value,'cost'),_.sumBy(o.value,'cost'),Math.ceil(e.value.money/100),Math.ceil(e.value.destinyPoints/2)])),s=(0,c.computed)(()=>_.sum(_.values(e.value.basePoints))),i=(0,c.computed)(()=>25),d=(0,c.computed)(()=>i.value-s.value),m=(0,c.computed)(()=>_.sum(_.values(e.value.attributePoints))),u=(0,c.computed)(()=>{return t=e.value.level,Math.max(0,t-1);var t}),p=(0,c.computed)(()=>u.value-m.value),v=(0,c.computed)(()=>{const t=w(e.value.level);return _.fromPairs(_.map(x,a=>[a,e.value.basePoints[a]+t+e.value.attributePoints[a]]))});return(0,c.watch)(()=>e.value.level,()=>{e.value.attributePoints={力量:0,敏捷:0,体质:0,智力:0,精神:0}},{flush:'sync'}),(0,c.watch)(()=>[e.value.race,e.value.customRace],()=>{const t='自定义'===e.value.race?e.value.customRace:e.value.race,a=_.without(_.keys(h.value),'自定义'),o=F();_.remove(l.value,e=>{const l=(n=e.name,_.findKey(o,e=>_.some(e,e=>e.name===n))||'');var n;return _.includes(a,l)&&l!==t})},{deep:!0}),(0,c.watch)(B,t=>{e.value.identity||_.isEmpty(t)||(e.value.identity=I())},{immediate:!0}),{character:e,consumedPoints:r,se
+<head>
+<script type="module">
+import { createPinia as e, defineStore as t, storeToRefs as a } from 'https://testingcf.jsdelivr.net/npm/pinia/+esm';
+import { default as l } from 'https://testingcf.jsdelivr.net/npm/json5/+esm';
+import { klona as o } from 'https://testingcf.jsdelivr.net/npm/klona/+esm';
+var n = {
+    391: (e, t) => {
+        t.A = (e, t) => {
+            const a = e.__vccOpts || e;
+            for (const [e, l] of t) a[e] = l;
+            return a;
+        };
+    }
+};
+var r = {};
+const c = Vue, s = { class: 'creator-app' };
+var i = function e(t) {
+    var a = r[t];
+    if (void 0!==a) return a.exports;
+    var l = r[t] = { exports: {} };
+    return n[t](l, l.exports, e), l.exports;
+}(391);
+const d = {}, m = (0, i.A)(d, [
+    ['render', function (e, t) {
+        const a = (0, c.resolveComponent)('RouterView');
+        return (0, c.openBlock)(), (0, c.createElementBlock)('div', s, [(0, c.createVNode)(a)]);
+    }],
+    ['__scopeId', 'data-v-15ec88ba']
+]);
+var u = VueRouter;
+const p = [
+    { value: 'common', label: '普通', color: '#9e9e9e' },
+    { value: 'uncommon', label: '优秀', color: '#4caf50' },
+    { value: 'rare', label: '稀有', color: '#2196f3' },
+    { value: 'epic', label: '史诗', color: '#9c27b0' },
+    { value: 'legendary', label: '传说', color: '#ff9800' },
+    { value: 'mythic', label: '神话', color: '#e91e63' },
+    { value: 'only', label: '唯一', color: '#ff0000' }
+];
+const v = [
+    { label: '武器', value: '武器' },
+    { label: '防具', value: '防具' },
+    { label: '饰品', value: '饰品' }
+];
+const f = [
+    { label: '主动', value: '主动' },
+    { label: '被动', value: '被动' }
+];
+const V = [
+    { value: 'equipment', label: '装备' },
+    { value: 'item', label: '道具' },
+    { value: 'skill', label: '技能' }
+];
+const k = e => p.find(t => t.value === e)?.label || '普通';
+const N = e => p.find(t => t.value === e)?.color || '#9e9e9e';
+async function y(e, t) {
+    try {
+        const a = await fetch(`https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/public/assets/data/${e}`);
+        if (!a.ok) return console.log(`未找到自定义数据文件 (${e})`), {};
+        const o = await a.text(), n = l.parse(o);
+        return console.log(`成功加载自定义${t}数据`), n;
+    } catch (e) {
+        return console.log(`未找到自定义${t}数据或格式错误:`, e), {};
+    }
+}
+function E(e, t) {
+    return _.mergeWith({}, e, t, (e, t) => {
+        if (_.isArray(e)) return [...e, ...t];
+    });
+}
+const g = (0, c.ref)({});
+(async function () {
+    return y('baseInfo.json', '基础信息');
+})().then(e => {
+    g.value = e;
+});
+const b = (0, c.computed)(() => [...(g.value.genders || []).filter(e => '自定义'!==e), '自定义']);
+const h = (0, c.computed)(() => ({ ...g.value.raceCosts || {}, 自定义: 80 }));
+const B = (0, c.computed)(() => ({ ...g.value.identityCosts || {}, 自定义: 80 }));
+const C = (0, c.computed)(() => {
+    const e = (e, t = '-') => {
+        const a = [], l = new Map, o = new Set(e), n = new Set;
+        for (const a of e) {
+            const e = a.split(t);
+            let l = '';
+            for (let a = 0; a < e.length - 1; a++) {
+                const r = e[a].trim();
+                l = l ? `${l}${t}${r}` : r;
+                o.has(l) && n.add(l);
+            }
+        }
+        for (const o of e) {
+            const e = o.split(t);
+            let r = '', c = a;
+            for (let a = 0; a < e.length; a++) {
+                const o = e[a].trim();
+                r = r ? `${r}${t}${o}` : o;
+                let s = l.get(r);
+                if (!s && (s = { label: o, value: r, children: [] }, l.set(r, s), c.push(s), n.has(r))) {
+                    const e = { label: `${o}（本地区）`, value: r };
+                    s.children.unshift(e);
+                }
+                c = s.children;
+            }
+        }
+        const r = e => {
+            for (const t of e) t.children && 0 === t.children.length ? delete t.children : t.children && r(t.children);
+        };
+        return r(a), a;
+    })(g.value.startLocations || []).filter(e => '自定义'!==e);
+    return e.push({ label: '自定义', value: '自定义' }), e;
+});
+const x = ['力量', '敏捷', '体质', '智力', '精神'];
+const w = e => e >=1 && e <=4 ? 0 : e >=5 && e <=8 ? 1 : e >=9 && e <=12 ? 2 : e >=13 && e <=16 ? 3 : e >=17 && e <=20 ? 4 : e >=21 && e <=24 ? 5 : e >=25 ? 6 : 0;
+const S = e => e >=1 && e <=4 ? '第一层级' : e >=5 && e <=8 ? '第二层级' : e >=9 && e <=12 ? '第三层级' : e >=13 && e <=16 ? '第四层级' : e >=17 && e <=20 ? '第五层级' : e >=21 && e <=24 ? '第六层级' : e >=25 ? '第七层级' : '未知层级';
+let D = {}, P = null;
+function F() {
+    return P || D;
+}
+!async function () {
+    const e = await y('skills.json', '技能');
+    P = E(D, e);
+}();
+const I = () => _.find(_.keys(B.value), e => _.includes(e, '平民')) || '';
+const L = t('character', () => {
+    const e = (0, c.ref)({
+        name: '',
+        gender: '男',
+        customGender: '',
+        age: 18,
+        race: '人类',
+        customRace: '',
+        identity: I(),
+        customIdentity: '',
+        startLocation: '大陆东南部区域-索伦蒂斯王国',
+        customStartLocation: '',
+        level: 1,
+        basePoints: { 力量: 0, 敏捷: 0, 体质: 0, 智力: 0, 精神: 0 },
+        attributePoints: { 力量: 0, 敏捷: 0, 体质: 0, 智力: 0, 精神: 0 },
+        reincarnationPoints: 1000,
+        destinyPoints: 0,
+        money: 0
+    });
+    const t = (0, c.ref)([]), a = (0, c.ref)([]), l = (0, c.ref)([]), o = (0, c.ref)([]);
+    const n = (0, c.computed)(() => _.sum([
+        _.get(h.value, e.value.race, 0),
+        _.get(B.value, e.value.identity, 0),
+        _.sumBy(t.value, 'cost'),
+        _.sumBy(a.value, 'cost'),
+        _.sumBy(l.value, 'cost'),
+        _.sumBy(o.value, 'cost'),
+        Math.ceil(e.value.money / 100),
+        Math.ceil(e.value.destinyPoints / 2)
+    ]));
+    const r = (0, c.computed)(() => _.sum(_.values(e.value.basePoints)));
+    const s = (0, c.computed)(() => 25);
+    const i = (0, c.computed)(() => s.value - r.value);
+    const d = (0, c.computed)(() => _.sum(_.values(e.value.attributePoints)));
+    const m = (0, c.computed)(() => Math.max(0, e.value.level - 1));
+    const u = (0, c.computed)(() => m.value - d.value);
+    const p = (0, c.computed)(() => {
+        const t = w(e.value.level);
+        return _.fromPairs(_.map(x, a => [a, e.value.basePoints[a] + t + e.value.attributePoints[a]]));
+    });
+    (0, c.watch)(() => e.value.level, () => {
+        e.value.attributePoints = { 力量: 0, 敏捷: 0, 体质: 0, 智力: 0, 精神: 0 };
+    }, { flush: 'sync' });
+    (0, c.watch)(() => [e.value.race, e.value.customRace], () => {
+        const t = '自定义' === e.value.race ? e.value.customRace : e.value.race;
+        const a = _.without(_.keys(h.value), '自定义');
+        const o = F();
+        _.remove(l.value, e => {
+            const l = _.findKey(o, e => _.some(e, e => e.name === e.name)) || '';
+            return _.includes(a, l) && l !== t;
+        });
+    }, { deep: true });
+    (0, c.watch)(B, t => {
+        e.value.identity || _.isEmpty(t) || (e.value.identity = I());
+    }, { immediate: true });
+    return {
+        character: e,
+        consumedPoints: n,
+        selectedEquipments: t,
+        selectedItems: a,
+        selectedSkills: l,
+        selectedTalents: o,
+        basePointsLeft: i,
+        attributePointsLeft: u,
+        totalAttributes: p
+    };
+});
+const T = e => ({
+    install: t => {
+        t.use(e), t.use(u), t.component('creator-app', m);
+    }
+});
+export default T(c.createApp({}));
+</script>
+</head>
