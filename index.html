@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>命运之旅-自定义启动页</title>
-    <style>
-        body { margin: 0; padding: 0; }
-        iframe { width: 100vw; height: 100vh; border: none; }
-    </style>
+    <title>酒馆AI-自定义入口</title>
+    <!-- 必须加jQuery，酒馆AI内置了，你的网站需要手动引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 </head>
 <body>
-    <iframe src="https://the-poem-of-destiny.github.io/FrontEnd-for-destined-journey/dist/custom_start/"></iframe>
+<script>
+// 把原CDN地址换成你的GitHub Pages网址，语法和酒馆AI里一致
+$('body').load('https://garvin3.github.io/1234/目标页面.html'); 
+// 若想加载酒馆AI原本的页面，直接写原地址：
+// $('body').load('https://testingcf.jsdelivr.net/gh/The-poem-of-destiny/FrontEnd-for-destined-journey@1.8.2/dist/custom_start/index.html');
+</script>
 </body>
 </html>
